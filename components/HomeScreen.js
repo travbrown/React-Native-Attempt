@@ -1,18 +1,18 @@
 /*jshint esversion: 6 */
 import React, { Component } from 'react';
 import { 
-  AppRegistry,
   Button,
   StyleSheet,
   Text, 
   Image,
-  View, 
+  View,
   FlatList,
   TouchableOpacity,
   TextInput } from 'react-native';
 
 export default class HomeScreen extends React.Component {
   state = {
+    posts: [],
     message: 'I am da one, di ultimate',
     countries: [
       { name: "Australia", imageSrc: "https://play.nativescript.org/dist/assets/img/flags/au.png" },
@@ -42,8 +42,24 @@ export default class HomeScreen extends React.Component {
   }
 
   handleListTap = item => {
-    console.log(item.name)
+    console.log(item.name);
+    this.props.navigation.navigate('Another', {
+      name: item.name,
+    });
   }
+
+  componentWillMount() {
+    console.log('mounted');
+    
+    fetch('https://www.reddit.com/r/aww.json').then(response => response.json())
+    .then(data => {
+        console.log(data.data.children);
+        this.setState({
+            posts: data.data.children
+        });
+    })
+}
+
   render() {
     return (
       <View style={styles.one_guh}>
@@ -68,8 +84,8 @@ export default class HomeScreen extends React.Component {
               style={{height:1, width:'100%', backgroundColor: 'lightgray'}}
             />
           }
-          data={this.state.countries}
-          keyExtractor={item => item.name}
+          data={this.state.posts}
+          keyExtractor={item => item.data.id}
           renderItem={({ item }) => 
             <TouchableOpacity 
               style={{flexDirection: 'row', alignItems: 'center',  padding: 10}}
@@ -77,9 +93,9 @@ export default class HomeScreen extends React.Component {
               >
               <Image
                   style={{height:50, width: 50, borderRadius: 25 }}
-                  source={{uri: item.imageSrc}}
+                  source={{uri: item.data.thumbnail }}
               />
-              <Text style={{ padding:10 }}> {item.name} </Text>
+              <Text style={{ padding:10 }}> {item.data.title} </Text>
             </TouchableOpacity>
           }
         />
@@ -97,6 +113,4 @@ const styles = StyleSheet.create({
   }
 })
 
-// skip this line if using Create React Native App
-//AppRegistry.registerComponent('AwesomeProject', () => App);
 

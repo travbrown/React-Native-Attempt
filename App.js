@@ -3,9 +3,11 @@ import React from "react";
 import { View, Text } from "react-native";
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import HomeScreen from "./components/HomeScreen";
+import AnotherScreen from "./components/AnotherScreen";
 
 const AppNavigator = createStackNavigator({
-    Home: HomeScreen
+    Home: HomeScreen,
+    Another: AnotherScreen,
   });
 
 const AppContainer = createAppContainer(AppNavigator);
