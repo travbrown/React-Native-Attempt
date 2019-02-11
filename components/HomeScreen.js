@@ -44,7 +44,8 @@ export default class HomeScreen extends React.Component {
   handleListTap = item => {
     console.log(item.name);
     this.props.navigation.navigate('Another', {
-      name: item.name,
+      title: item.title,
+      imageSrc: item.data.preview.images[0].source.url,
     });
   }
 

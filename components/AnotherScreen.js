@@ -23,11 +23,15 @@ export default class AnotherScreen extends React.Component {
     return (
         <View style={styles.one_guh}>
             <Text>
-                {this.props.navigation.getParam('name', 'no title')}
+                {this.props.navigation.getParam('title', 'no title')}
             </Text>
             <Button 
                 title="Go Back"
                 onPress={() => this.props.navigation.goBack()}
+            />
+            <Image
+                  style={{ height: '100%' , width: '100%' }}
+                  source={{uri: this.props.navigation.getParam('imageSrc', '') }}
             />
         </View>
       
