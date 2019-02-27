@@ -1,19 +1,19 @@
-/*jshint esversion: 6 */
 import React from "react";
 import { View, Text } from "react-native";
-import { createStackNavigator, createAppContainer } from "react-navigation";
-import HomeScreen from "./components/HomeScreen";
-import AnotherScreen from "./components/AnotherScreen";
-
-const AppNavigator = createStackNavigator({
-    Home: HomeScreen,
-    Another: AnotherScreen,
-  });
-
-const AppContainer = createAppContainer(AppNavigator);
-
-export default class myApp extends React.Component {
-   render() {
-       return <AppContainer />;
-    }
+import MapView from 'react-native-maps'
+export default class App extends React.Component {
+  render() {
+    return (
+      <MapView
+        style={{flex: 1}}
+        region={{
+          latitude: 42.882004,
+          longitude: 74.582748,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421
+        }}
+        showsUserLocation={true}
+      />
+    );
   }
+}
