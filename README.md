@@ -8,5 +8,3 @@ Here is his repo with the finished code: https://github.com/drehimself/reactnati
 # Challenges
 
 React-Navigation wasn't working for the most basic navigation to the home screen and it magically started working again after they updated the react-navigation package.
-
-Furthermore, I read the limitations of the react-navigation doc and I think i should just move over to another router
